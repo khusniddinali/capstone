@@ -21,16 +21,7 @@ def setup_db(app, database_path=database_path):
     db.create_all()
 
 
-############# Movie Items - assocation table ################
-movie_items = db.Table('movie_items',
-                       Column('movie_id', Integer, ForeignKey(
-                           'Movie.id'), primary_key=True),
-                       Column('actor_id', Integer, ForeignKey(
-                           'Actor.id'), primary_key=True)
-                       )
-
-
-###################### Movies Model ############################
+###################### Models - Movies Model #########################
 class Movie(db.Model):
     __tablename__ = 'Movie'
 
@@ -38,20 +29,15 @@ class Movie(db.Model):
     title = Column(String)
     release_date = Column(DateTime)
 
-    actors = relationship('Actors', backref=backref(
-        'Movie', lazy=True), secondary=movie_items)
-
-    def __init__(self, title, release_date, actors):
+    def __init__(self, title, release_date):
         self.title = title
         self.release_date = release_date
-        self.actors = actors
 
     def format(self):
         return {
             'id': self.id,
-            'name': self.name,
+            'title': self.title,
             'release_date': self.release_date,
-            'actors': self.actors
         }
 
     def insert(self):
@@ -75,14 +61,10 @@ class Actor(db.Model):
     age = Column(Integer)
     gender = Column(Enum('M', 'F'))
 
-    movies = relationship('Movies', backref=backref(
-        'Actor', lazy=True), secondary=movie_items)
-
-    def __init__(self, name, age, gender, movies):
+    def __init__(self, name, age, gender):
         self.name = name
         self.age = age,
         self.gender = gender
-        self.movies = movies
 
     def format(self):
         return {
@@ -90,7 +72,6 @@ class Actor(db.Model):
             'name': self.name,
             'age': self.age,
             'gender': self.gender,
-            'movies': self.movies
         }
 
     def insert(self):
