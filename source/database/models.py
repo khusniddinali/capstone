@@ -1,5 +1,7 @@
 from sqlalchemy import *
 from flask_sqlalchemy import SQLAlchemy
+import babel
+import dateutil.parser
 import json
 import os
 from sqlalchemy.orm import backref, relationship
@@ -51,6 +53,18 @@ class Movie(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+    def format_datetime(value, format='medium'):
+        date = dateutil.parser.parse(value)
+        if format == 'full':
+            format="EEEE MMMM, d, y 'at' h:mma"
+        elif format == 'medium':
+            format="EE MM, dd, y h:mma"
+        return babel.dates.format_datetime(date, format, locale='en')
+
+        app.jinja_env.filters['datetime'] = format_datetime
+
+    db.create_all()
+
 
 ###################### Actors Model ############################
 class Actor(db.Model):
@@ -59,7 +73,7 @@ class Actor(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     age = Column(Integer)
-    gender = Column(Enum('M', 'F'))
+    gender = Column(Enum('M', 'F', name='gender_types'))
 
     def __init__(self, name, age, gender):
         self.name = name
@@ -84,3 +98,5 @@ class Actor(db.Model):
     def delete(self):
         db.session.delete()
         db.session.commit()
+
+    db.create_all()

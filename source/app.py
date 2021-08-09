@@ -2,8 +2,8 @@ import os
 from flask import Flask, abort, jsonify, request
 from flask_cors import CORS
 
-from .database.models import setup_db, Movie, Actor
-from .auth.auth import AuthError, requires_auth
+from database.models import setup_db, Movie, Actor
+from auth.auth import AuthError, requires_auth
 
 
 ############## Create app ###############
@@ -97,7 +97,7 @@ def create_app(test_config=None):
 
 
     ################### Create movies #####################
-    @app.route('/movies', methods=['POST'])
+    @app.route('/movies/add', methods=['POST'])
     def create_new_movie():
         body = request.get_json()
         if body is None:
@@ -116,7 +116,7 @@ def create_app(test_config=None):
 
 
     #################### Create Actor #####################
-    @app.route('/actors', methods=['POST'])
+    @app.route('/actors/add', methods=['POST'])
     def create_new_actor():
         body = request.get_json()
         if body is None:
@@ -136,7 +136,45 @@ def create_app(test_config=None):
 
 
     ################### Update Movie ######################
-    @app.route('/movies', methods=['PATCH'])
+    @app.route('/movies/<int:movie_id>', methods=['PATCH'])
+    def update_movie(movie_id):
+        movie = Movie.query.filter(Movie.id == movie_id).one_or_none()
+        if movie is None:
+            abort(404)
+        data = request.get_json()
+        if 'title' in data:
+            movie.title = data['title']
+        if 'release_date' in data:
+            movie.release_date = data['release_date']
+        
+        movie.update()
+
+        return jsonify({
+            'success': True,
+            'movie': movie_id
+        })
+
+
+    #################### Update Actor ######################
+    @app.route('/actors/<int:actor_id>', methods=['PATCH'])
+    def update_actor(actor_id):
+        data = request.get_json()
+        actor = Actor.query.filter(Actor.id == actor_id).one_or_none()
+        if actor is None:
+            abort(404)
+        if 'name' in data:
+            actor.name = data['name']
+        if 'age' in data:
+            actor.age = data['age']
+        if 'gender' in data:
+            actor.gender = data['gender']
+        
+        actor.update()
+
+        return jsonify({
+            'success': True,
+            'actor': actor_id
+        })
 
     return app
 
