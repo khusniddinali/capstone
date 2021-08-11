@@ -28,7 +28,7 @@ def get_auth_header():
         }, 401)
 
     parts = auth.split()
-    if parts[0].lower() == 'bearer':
+    if parts[0].lower() != 'bearer':
         raise AuthError({
             'error': '401 unauthorized',
             'dexcription': "Authoriztion header must start with 'Bearer' word"
@@ -45,6 +45,8 @@ def get_auth_header():
             'error': '401 unauthorized',
             'description': "Authorization must be bearer"
         }, 401)
+    
+    return parts[1]
 
 
 ##### Check Permissions #####
@@ -56,7 +58,7 @@ def check_permissions(permission, payload):
             'description': "Permissions not found in this payload",
         }, 400)
     
-    if permission not in payload:
+    if permission not in payload['permissions']:
         raise AuthError({
             'error': '403 Forbidden',
             'description': "Permission not found"

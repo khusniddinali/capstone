@@ -2,8 +2,19 @@ import os
 from flask import Flask, abort, jsonify, request
 from flask_cors import CORS
 
-from database.models import setup_db, Movie, Actor
-from auth.auth import AuthError, requires_auth
+from .database.models import setup_db, Movie, Actor
+from .auth.auth import AuthError, requires_auth
+
+
+########### Paginate pages #############
+item_per_page = 10
+def paginate_page(request, selection):
+    page = request.args.get('page', 1, type=int)
+    start = (page-1)*item_per_page
+    end = start + item_per_page
+    items = [item.format() for item in selection]
+    cur_items = items[start:end]
+    return cur_items
 
 
 ############## Create app ###############
@@ -14,61 +25,77 @@ def create_app(test_config=None):
     CORS(app)
 
 
+    ####### Home page #######
+    @app.route('/')
+    def home_page():
+        return jsonify({
+            'success': True,
+            'message': "Congrats, home page is working :)"
+        })
+
+
     ################# Retrieve movies ################
     @app.route('/movies')
-    def retrieve_movies():
-        movies = Movie.query.all()
-        current_movies = [movie.format() for movie in movies]
-        if current_movies is None:
+    @requires_auth('get:movies')
+    def retrieve_movies(token):
+        movies = Movie.query.order_by(Movie.id).all()
+        if not movies:
             abort(404)
+        current_movies = paginate_page(request, movies)
 
         return jsonify({
             'success': True,
-            'movies': current_movies
+            'movies': current_movies,
+            'total_movies': len(movies)
         }), 200
 
 
     @app.route('/movies/<int:movie_id>')
-    def retireve_movie_(movie_id):
+    @requires_auth('get:movies')
+    def retireve_movie_(token, movie_id):
         movie = Movie.query.filter(Movie.id == movie_id).one_or_none()
         if movie is None:
             abort(404)
         
         return jsonify({
             'success': True,
-            'movie': movie
+            'movie': movie.format()
         }), 200
 
     
     ################ Retrieve actors #################
     @app.route('/actors')
-    def retrieve_actors():
-        actors = Actor.query.all()
-        current_actors = [actor.format() for actor in actors]
-        if current_actors is None:
+    @requires_auth('get:actors')
+    def retrieve_actors(token):
+        actors = Actor.query.order_by(Actor.id).all()
+        if actors is None:
             abort(404)
+        current_actors = paginate_page(request, actors)
 
         return jsonify({
             'success': True,
-            'actors': current_actors
+            'actors': current_actors,
+            'total_actors': len(actors)
         }), 200
 
 
     @app.route('/actors/<int:actor_id>')
-    def retireve_actor(actor_id):
+    @requires_auth('get:actors')
+    def retireve_actor(token, actor_id):
         actor = Actor.query.filter(Actor.id == actor_id).one_or_none()
         if actor is None:
             abort(404)
         
         return jsonify({
             'success': True,
-            'movie': actor
+            'actor': actor.format()
         }), 200        
     
 
     ################ Delete movie #####################
     @app.route('/movies/<int:movie_id>', methods=['DELETE'])
-    def delete_movie(movie_id):
+    @requires_auth('delete:movies')
+    def delete_movie(token, movie_id):
         movie = Movie.query.filter(Movie.id == movie_id).one_or_none()
         if movie is None:
             abort(404)
@@ -83,7 +110,8 @@ def create_app(test_config=None):
 
     ################# Delete Actor ###################
     @app.route('/actors/<int:actor_id>', methods=['DELETE'])
-    def delete_actor(actor_id):
+    @requires_auth('delete:actors')
+    def delete_actor(token, actor_id):
         actor = Actor.query.filter(Actor.id == actor_id).one_or_none()
         if actor is None:
             abort(404)
@@ -93,12 +121,13 @@ def create_app(test_config=None):
         return jsonify({
             'success': True,
             'deleted': actor_id
-        })
+        }), 200
 
 
     ################### Create movies #####################
     @app.route('/movies/add', methods=['POST'])
-    def create_new_movie():
+    @requires_auth('add:movies')
+    def create_new_movie(token):
         body = request.get_json()
         if body is None:
             abort(400)
@@ -106,18 +135,22 @@ def create_app(test_config=None):
         release_date = body['release_date']
 
         new_movie = Movie(title = new_title, release_date = release_date)
+        movies = Movie.query.all()
+        cur_movies = paginate_page(request, movies)
 
         new_movie.insert()
 
         return jsonify({
             'success': True,
-            'movies': Movie.query.all()
+            'movies': cur_movies,
+            'total_movies': len(movies)
         }), 200
 
 
     #################### Create Actor #####################
     @app.route('/actors/add', methods=['POST'])
-    def create_new_actor():
+    @requires_auth('add:actors')
+    def create_new_actor(token):
         body = request.get_json()
         if body is None:
             abort(400)
@@ -126,18 +159,22 @@ def create_app(test_config=None):
         gender = body['gender']
 
         new_actor = Actor(name = new_name, age = age, gender = gender)
+        actors = Actor.query.all()
+        cur_actors = paginate_page(request, actors)
 
         new_actor.insert()
 
         return jsonify({
             'success': True,
-            'movies': Actor.query.all()
+            'actors': cur_actors,
+            'total_actors': len(actors)
         }), 200
 
 
     ################### Update Movie ######################
     @app.route('/movies/<int:movie_id>', methods=['PATCH'])
-    def update_movie(movie_id):
+    @requires_auth('patch:movies')
+    def update_movie(token, movie_id):
         movie = Movie.query.filter(Movie.id == movie_id).one_or_none()
         if movie is None:
             abort(404)
@@ -157,7 +194,8 @@ def create_app(test_config=None):
 
     #################### Update Actor ######################
     @app.route('/actors/<int:actor_id>', methods=['PATCH'])
-    def update_actor(actor_id):
+    @requires_auth('patch:actors')
+    def update_actor(token, actor_id):
         data = request.get_json()
         actor = Actor.query.filter(Actor.id == actor_id).one_or_none()
         if actor is None:
@@ -175,8 +213,35 @@ def create_app(test_config=None):
             'success': True,
             'actor': actor_id
         })
+    
+
+    @app.errorhandler(404)
+    def not_found(error):
+        return jsonify({
+            'success': False,
+            'error': 404,
+            'message': 'Resource not found'
+        }), 404
+
+    @app.errorhandler(400)
+    def bad_request(error):
+        return jsonify({
+            'success': False,
+            'error': 400,
+            'message': 'Bad request'
+        }), 400
+
+    @app.errorhandler(AuthError)
+    def autherror_handling(fault):
+        response = jsonify(fault.error)
+        response.status_code = fault.status_code
+        return response
+
 
     return app
+
+
+
 
 app = create_app()
 

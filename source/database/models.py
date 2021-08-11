@@ -4,12 +4,10 @@ import babel
 import dateutil.parser
 import json
 import os
-from sqlalchemy.orm import backref, relationship
 
-database_path = os.environ.get('DATABASE_URL')
-if not database_path:
-    database_name = "agency"
-    database_path = "postgresql://{}:{}@{}/{}".format(
+
+database_name = "casting"
+database_path = "postgresql://{}:{}@{}/{}".format(
         'postgres', '571632', 'localhost:5432', database_name)
 
 db = SQLAlchemy()
@@ -25,7 +23,7 @@ def setup_db(app, database_path=database_path):
 
 ###################### Models - Movies Model #########################
 class Movie(db.Model):
-    __tablename__ = 'Movie'
+    __tablename__ = 'movies'
 
     id = Column(Integer, primary_key=True)
     title = Column(String)
@@ -53,22 +51,22 @@ class Movie(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-    def format_datetime(value, format='medium'):
-        date = dateutil.parser.parse(value)
-        if format == 'full':
-            format="EEEE MMMM, d, y 'at' h:mma"
-        elif format == 'medium':
-            format="EE MM, dd, y h:mma"
-        return babel.dates.format_datetime(date, format, locale='en')
+    # def format_datetime(value, format='medium'):
+    #     date = dateutil.parser.parse(value)
+    #     if format == 'full':
+    #         format="EEEE MMMM, d, y 'at' h:mma"
+    #     elif format == 'medium':
+    #         format="EE MM, dd, y h:mma"
+    #     return babel.dates.format_datetime(date, format, locale='en')
 
-        app.jinja_env.filters['datetime'] = format_datetime
+    #     app.jinja_env.filters['datetime'] = format_datetime
 
-    db.create_all()
+
 
 
 ###################### Actors Model ############################
 class Actor(db.Model):
-    __tablename__ = "Actor"
+    __tablename__ = "actors"
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
@@ -96,7 +94,5 @@ class Actor(db.Model):
         db.session.commit()
 
     def delete(self):
-        db.session.delete()
+        db.session.delete(self)
         db.session.commit()
-
-    db.create_all()
