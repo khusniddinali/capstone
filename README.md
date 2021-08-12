@@ -346,9 +346,131 @@ Response:
 
 
 
+### Patch - movies
+
+* Methods: **PATCH**
+* URL: `/movies/<movie_id>`
+* Permission: `patch:movies`
+
+>[!] Required Request Body
+
+Request body structure:
+
+```json
+{
+    "title": str,
+    "release_date": datetime,
+}
+```
+
+Sample Request using Curl:
+
+```bash
+curl --location --request POST \
+'https://abduaziz-casting-agency.herokuapp.com/api/movies/add' \
+--header 'Authorization: Bearer <token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"title": "New Some Film",
+	"release_date": "02.11.2001"
+}'
+```
+Response:
+```json
+	{
+		"success": true,
+		"movie": <movie_id>
+	}
+```
 
 
-## Authors
+### Patch - actors
+
+* Methods: **PATCH**
+* URL: `/actors/<actor_id>`
+* Permission: `patch:actors`
+
+>[!] Required Request Body
+
+Request body structure:
+
+```json
+{
+    "name": str,
+	"age": int,
+	"gender": Boolean
+}
+```
+
+Sample Request using Curl:
+
+```bash
+curl --location --request POST \
+'https://abduaziz-casting-agency.herokuapp.com/api/movies/add' \
+--header 'Authorization: Bearer <token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "age": 100,
+    "gender": "M"
+}'
+```
+
+Response:
+```json
+	{
+		"success": true,
+		"actor": <actor_id>
+	}
+```
+
+
+### Delete - movies
+
+* Methods: **DELETE**
+* URL: `/movies/<movie_id>`
+* Permission: `delete:movies`
+
+Sample Request using Curl:
+
+```bash
+curl --location --request POST \
+'https://abduaziz-casting-agency.herokuapp.com/api/movies/add' \
+--header 'Authorization: Bearer <token>' \
+--header 'Content-Type: application/json' \
+```
+Response:
+```json
+	{
+		"success": true,
+		"movie": <movie_id>
+	}
+```
+
+
+### Delete - actors
+
+* Methods: **DELETE**
+* URL: `/actors/<movie_id>`
+* Permission: `delete:actors`
+
+Sample Request using Curl:
+
+```bash
+curl --location --request POST \
+'https://abduaziz-casting-agency.herokuapp.com/api/movies/add' \
+--header 'Authorization: Bearer <token>' \
+--header 'Content-Type: application/json' \
+```
+Response:
+```json
+	{
+		"success": true,
+		"actor": <actor_id>
+	}
+```
+
+
+## Author
 
 Xusniddin Aliqulov Muxiddin o'g'li.
 Gmail: Ummat1Muhammad1571@gmail.com
