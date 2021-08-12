@@ -10,8 +10,8 @@ Authentication:
 >*  castingassistant@gmail.com
 >*  castingdirector@gmail.com
 >*  castingproducer@gmail.com
->  password: 571632Sav@
->  authorization link: https://moscod.us.auth0.com/authorize?audience=casting&response_type=token&client_id=NdOwf1JiSKnNuX1K32UzqOqTZ2KnzQV7&redirect_uri=http://127.0.0.1:5000/
+>-  password: 571632Sav@
+>-  authorization link: https://moscod.us.auth0.com/authorize?audience=casting&response_type=token&client_id=NdOwf1JiSKnNuX1K32UzqOqTZ2KnzQV7&redirect_uri=http://127.0.0.1:5000/
 
 There are three user-roles in this project:
 They are:
