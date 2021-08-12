@@ -42,10 +42,10 @@ Permissions on roles:
 
 #### Instructions for testing the project:
 Requirements - what you need to have to try this project:
-	- Python3 (https://www.python.org/downloads/)
-	- Postgresql database (https://www.postgresql.org/download/)
-	- Python pip packages
-	- Postman (for testing)
+  - Python3 (https://www.python.org/downloads/)
+  - Postgresql database (https://www.postgresql.org/download/)
+  - Python pip packages
+  - Postman (for testing)
 
 First step is clone this repo:
 
@@ -156,7 +156,7 @@ Response:
             	"release_date": "Wed, 01 Jan 2020 00:00:00 GMT",
             	"title": "Titanic movie"
         	},
-			//........ all movies data in database
+			//  ........ all movies data in database
 		],
 		"success": true,
 		"total_movies": 16
@@ -187,7 +187,7 @@ Response:
             	"id": 2,
             	"name": "George"
         	},
-			//........ all actors data in database
+			// ........ all actors data in database
 		],
 		"success": true,
 		"total_actors": 13
@@ -261,8 +261,8 @@ Request body structure:
 
 ```json
 {
-    "title": str,
-    "release_date": datetime,
+    "title": "str",
+    "release_date": "datetime",
 }
 ```
 
@@ -307,9 +307,9 @@ Request body structure:
 
 ```json
 {
-    "name": str,
-	"age": int,
-	"gender": Boolean
+    "name": "str",
+	"age": "int",
+	"gender": "Boolean"
 }
 ```
 
@@ -337,7 +337,7 @@ Response:
             "id": 2,
             "name": "George"
         },
-		//........ all actors data in database
+		// ........ all actors data in database
 	],
 	"success": true,
 	"total_actors": 13
@@ -358,8 +358,8 @@ Request body structure:
 
 ```json
 {
-    "title": str,
-    "release_date": datetime,
+    "title": "str",
+    "release_date": "datetime",
 }
 ```
 
@@ -379,7 +379,7 @@ Response:
 ```json
 	{
 		"success": true,
-		"movie": <movie_id>
+		"movie": "<movie_id>"
 	}
 ```
 
@@ -396,9 +396,9 @@ Request body structure:
 
 ```json
 {
-    "name": str,
-	"age": int,
-	"gender": Boolean
+    "name": "str",
+	"age": "int",
+	"gender": "Boolean"
 }
 ```
 
@@ -419,7 +419,7 @@ Response:
 ```json
 	{
 		"success": true,
-		"actor": <actor_id>
+		"actor": "<actor_id>"
 	}
 ```
 
@@ -442,7 +442,7 @@ Response:
 ```json
 	{
 		"success": true,
-		"movie": <movie_id>
+		"movie": "<movie_id>"
 	}
 ```
 
@@ -465,7 +465,7 @@ Response:
 ```json
 	{
 		"success": true,
-		"actor": <actor_id>
+		"actor": "<actor_id>"
 	}
 ```
 
