@@ -143,7 +143,7 @@ Sample Request using CURL:
 
 ```bash
 curl --location --request GET \
-'https://abduaziz-casting-agency.herokuapp.com/api/actors' \                       33333333333333333333333
+'https://husniddin-casting.herokuapp.com/movies' \ 
 --header 'Authorization: Bearer <token>'
 ```
 
@@ -173,7 +173,7 @@ Sample Request using CURL:
 
 ```bash
 curl --location --request GET \
-'https://abduaziz-casting-agency.herokuapp.com/api/actors' \                       33333333333333333333333
+'https://husniddin-casting.herokuapp.com/actors' \ 
 --header 'Authorization: Bearer <token>'
 ```
 
@@ -204,7 +204,7 @@ Sample Request using CURL:
 
 ```bash
 curl --location --request GET \
-'https://capstone-casting-agency.herokuapp.com/api/actors' \                       33333333333333333333333
+'https://husniddin-casting.herokuapp.com/movies/2' \ 
 --header 'Authorization: Bearer <token>'
 ```
 
@@ -230,7 +230,7 @@ Sample Request using CURL:
 
 ```bash
 curl --location --request GET \
-'https://capstone-casting-agency.herokuapp.com/api/actors' \                       33333333333333333333333
+'https://husniddin-casting.herokuapp.com/actors/4' \ 
 --header 'Authorization: Bearer <token>'
 ```
 
@@ -270,7 +270,7 @@ Sample Request using Curl:
 
 ```bash
 curl --location --request POST \
-'https://abduaziz-casting-agency.herokuapp.com/api/movies/add' \
+'https://husniddin-casting.herokuapp.com/movies/add' \
 --header 'Authorization: Bearer <token>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -317,9 +317,9 @@ Sample Request using Curl:
 
 ```bash
 curl --location --request POST \
-'https://abduaziz-casting-agency.herokuapp.com/api/movies/add' \
---header 'Authorization: Bearer <token>' \
---header 'Content-Type: application/json' \
+'https://husniddin-casting.herokuapp.com/actors/add' \ 
+--header 'Authorization: Bearer <token>' \ 
+--header 'Content-Type: application/json' \ 
 --data-raw '{
     "name": "Amitabh Bachchan",
     "age": 99,
@@ -367,9 +367,9 @@ Sample Request using Curl:
 
 ```bash
 curl --location --request POST \
-'https://abduaziz-casting-agency.herokuapp.com/api/movies/add' \
---header 'Authorization: Bearer <token>' \
---header 'Content-Type: application/json' \
+'https://husniddin-casting.herokuapp.com/movies/<movie_id>' \ 
+--header 'Authorization: Bearer <token>' \ 
+--header 'Content-Type: application/json' \ 
 --data-raw '{
 	"title": "New Some Film",
 	"release_date": "02.11.2001"
@@ -406,9 +406,9 @@ Sample Request using Curl:
 
 ```bash
 curl --location --request POST \
-'https://abduaziz-casting-agency.herokuapp.com/api/movies/add' \
---header 'Authorization: Bearer <token>' \
---header 'Content-Type: application/json' \
+'https://husniddin-casting.herokuapp.com/actors/<actor_id>' \ 
+--header 'Authorization: Bearer <token>' \ 
+--header 'Content-Type: application/json' \ 
 --data-raw '{
     "age": 100,
     "gender": "M"
@@ -434,9 +434,9 @@ Sample Request using Curl:
 
 ```bash
 curl --location --request POST \
-'https://abduaziz-casting-agency.herokuapp.com/api/movies/add' \
---header 'Authorization: Bearer <token>' \
---header 'Content-Type: application/json' \
+'https://husniddin-casting.herokuapp.com/movies/<movie_id>' \
+--header 'Authorization: Bearer <token>' \ 
+--header 'Content-Type: application/json' \ 
 ```
 Response:
 ```json
@@ -457,9 +457,9 @@ Sample Request using Curl:
 
 ```bash
 curl --location --request POST \
-'https://abduaziz-casting-agency.herokuapp.com/api/movies/add' \
---header 'Authorization: Bearer <token>' \
---header 'Content-Type: application/json' \
+'https://husniddin-casting.herokuapp.com/actors/<actor_id>' \ 
+--header 'Authorization: Bearer <token>' \ 
+--header 'Content-Type: application/json' \ 
 ```
 Response:
 ```json
