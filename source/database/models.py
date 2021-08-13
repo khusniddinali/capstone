@@ -7,8 +7,7 @@ import os
 
 
 database_name = "casting"
-database_path = "postgresql://{}:{}@{}/{}".format(
-        'postgres', '571632', 'localhost:5432', database_name)
+database_path = os.environ['DATABASE_URL']
 
 db = SQLAlchemy()
 
@@ -60,8 +59,6 @@ class Movie(db.Model):
     #     return babel.dates.format_datetime(date, format, locale='en')
 
     #     app.jinja_env.filters['datetime'] = format_datetime
-
-
 
 
 ###################### Actors Model ############################
