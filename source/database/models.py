@@ -6,7 +6,6 @@ import json
 import os
 
 
-database_name = "casting"
 database_path = os.environ['DATABASE_URL']
 
 db = SQLAlchemy()
@@ -49,16 +48,6 @@ class Movie(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
-
-    # def format_datetime(value, format='medium'):
-    #     date = dateutil.parser.parse(value)
-    #     if format == 'full':
-    #         format="EEEE MMMM, d, y 'at' h:mma"
-    #     elif format == 'medium':
-    #         format="EE MM, dd, y h:mma"
-    #     return babel.dates.format_datetime(date, format, locale='en')
-
-    #     app.jinja_env.filters['datetime'] = format_datetime
 
 
 ###################### Actors Model ############################
