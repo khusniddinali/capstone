@@ -567,7 +567,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Neeew Film\",\r\n    \"release_date\": \"25.03.2014\"\r\n}",
+							"raw": "{\r\n    \"title\": \"Neeew Film\",\r\n    \"release_date\": \"01.03.2014\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -905,56 +905,6 @@
 					"response": []
 				},
 				{
-					"name": "/movies",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{producer}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Avengers\",\r\n    \"release_date\": \"26.03.2021\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/movies/add",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"movies",
-								"add"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "/actors",
 					"event": [
 						{
@@ -998,6 +948,56 @@
 							],
 							"path": [
 								"actors",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{producer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Avengers\",\r\n    \"release_date\": \"02.03.2021\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/movies/add",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"movies",
 								"add"
 							]
 						}
@@ -1281,7 +1281,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Avengers\",\r\n    \"release_date\": \"26.03.2021\"\r\n}",
+							"raw": "{\r\n    \"title\": \"Avengers\",\r\n    \"release_date\": \"04.03.2021\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1883,19 +1883,19 @@
 	"variable": [
 		{
 			"key": "host",
-			"value": "http:\\\\127.0.0.1:5000"
+			"value": "https://husniddin-casting.herokuapp.com"
 		},
 		{
 			"key": "assistant",
-			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkljUWhkdERBUG8xdU9DM1dZd0tOaSJ9.eyJpc3MiOiJodHRwczovL21vc2NvZC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjExMjc4NDkzNTgyYmMwMDY5NDk0MTc1IiwiYXVkIjoiY2FzdGluZyIsImlhdCI6MTYyODY4MDMxMiwiZXhwIjoxNjI4Njk4MzEyLCJhenAiOiJOZE93ZjFKaVNLbk51WDFLMzJVenFPcVRaMktuelFWNyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiXX0.WXuTMjlRUS7qT_mmST5Ie4Y1xkpQvOIjbY4-HQfwI2gjZMI-aZT_pD3ATWnNw3BAnbSNzub454iPRq2I9CQgXzcrUqTu8t2A9o6D9eIAbyU_zr0SM4XeUV-w_CjBNxMUd2Dzo560WPkXdbTXPOvMZPzDQFUjOLxtDiQttCkKOOkksdG6f-OEByOMmxtcckBhq8h3SCCpr-oLkI_xgSZXmSC-yVwhltfyAbY3tUBfvkb2iZn4gQXNsVXyWQJ4HROXiyvEZqN99J8rdaeh3DRV33yRhqZvGnkT8OGYWiUHMq2bYb_zpitrL2E77CVYi0Jdy9ZW6LGzhgfjJK-MvlrFKA"
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkljUWhkdERBUG8xdU9DM1dZd0tOaSJ9.eyJpc3MiOiJodHRwczovL21vc2NvZC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjExMjc4NDkzNTgyYmMwMDY5NDk0MTc1IiwiYXVkIjoiY2FzdGluZyIsImlhdCI6MTYyODg4MDc0OCwiZXhwIjoxNjI4ODk4NzQ4LCJhenAiOiJOZE93ZjFKaVNLbk51WDFLMzJVenFPcVRaMktuelFWNyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiXX0.dAg2pkRr7Kj31qzZT0_kawSUy2LSF2Pdy_If4w7Nz2eS3lP2bVL78QjgDv5pan1i0Om9IsbPxfdelhNFv6CviJiixBgqfrilh9AdH_x22NOHuth7SXw_BDgaROY_EYxk2AmbmaTc5X2i0cDv-COQhLwo3_Xcp8f91XADLFtlgf1sUgvU_OZ0XJRECng12cqR2DQWRVvzcjX4HplgVY3XPOjN-6x6BuJPeA6nhnVd71jNJvhH-q2fm2KTCAqmSLAh6mmtashvLkdUKmjukFtCPrzBSJJNIiLfr3Ud05xcSzsKcAjhD8-M_4QR3H-ZW3-zMyHuBQymSno2lCyJ9tbKRw"
 		},
 		{
 			"key": "director",
-			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkljUWhkdERBUG8xdU9DM1dZd0tOaSJ9.eyJpc3MiOiJodHRwczovL21vc2NvZC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjExMmJlMDYwZjg2NjQwMDY5MmUwZDA0IiwiYXVkIjoiY2FzdGluZyIsImlhdCI6MTYyODY4MDM2MCwiZXhwIjoxNjI4Njk4MzYwLCJhenAiOiJOZE93ZjFKaVNLbk51WDFLMzJVenFPcVRaMktuelFWNyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiYWRkOmFjdG9ycyIsImRlbGV0ZTphY3RvcnMiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsInBhdGNoOmFjdG9ycyIsInBhdGNoOm1vdmllcyJdfQ.f2up6bMDap99iNUVDxcAje10YzjVGC9E7xnyMBV1JixvOTmjk1owveFln2Nh2X5uRbMJVGnh_px-X-yu9QIHomkoE1dTyJRaoTo2hZrOpazp6ozxsJ9TJW8_6YE6TFvy4iUT9XEviHVQpTyNIyMZOEhnmE_jWkNwofLX6SuXKgazwx2Irv3rtIYR9GPDt9ELIQ4fZwGABdoOKjSAzkickZJ8HBuByyTPYYk_c6Pps3pg5O6IIqoDcIFttzb_pOZH_Yn2fgo8qJSG9Pmhv_oicNTPseDoEB2LBW8pdf6NN4CipfYFCjkbrOWhvfNTw7ny1srSH7V1X-CXiqPhANC7_Q"
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkljUWhkdERBUG8xdU9DM1dZd0tOaSJ9.eyJpc3MiOiJodHRwczovL21vc2NvZC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjExMmJlMDYwZjg2NjQwMDY5MmUwZDA0IiwiYXVkIjoiY2FzdGluZyIsImlhdCI6MTYyODg4MDgwMCwiZXhwIjoxNjI4ODk4ODAwLCJhenAiOiJOZE93ZjFKaVNLbk51WDFLMzJVenFPcVRaMktuelFWNyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiYWRkOmFjdG9ycyIsImRlbGV0ZTphY3RvcnMiLCJnZXQ6YWN0b3JzIiwiZ2V0Om1vdmllcyIsInBhdGNoOmFjdG9ycyIsInBhdGNoOm1vdmllcyJdfQ.RmiO_OhnK4fKsZrjZiKYECD2ombe_--VWfr6PPv8Btu7PoLb3PT_5-xNcbD9PHteSSTvNdukRDbdJxfZylaQj-uTtv9p_aWA6a0VKFlXwmHXRC0uraCQXRagrw4teaw2R6WPFhq11KwWhYpDnConRf3rQHOFR7m3udPsHKuS9MqkQzUNfP5u6hNndcltUuEDfVvcYLK0UXD34SFaL-o28XKPYwvetDoT8Tsj3QbR25_-TUGLsHKruHtqaAEkwHG682PGH_bm4up16jhiuFhfUC8U-DW5-NwpWH56VBwlpFSfLBVpzOKxtsE-iJ4fMyPTO1QRbhloEYfc5kuULu5PkQ"
 		},
 		{
 			"key": "producer",
-			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkljUWhkdERBUG8xdU9DM1dZd0tOaSJ9.eyJpc3MiOiJodHRwczovL21vc2NvZC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjExMmJlZWNjNzI0MDUwMDcxYjg2MzIxIiwiYXVkIjoiY2FzdGluZyIsImlhdCI6MTYyODY3NzgwMSwiZXhwIjoxNjI4Njk1ODAxLCJhenAiOiJOZE93ZjFKaVNLbk51WDFLMzJVenFPcVRaMktuelFWNyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiYWRkOmFjdG9ycyIsImFkZDptb3ZpZXMiLCJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIl19.NHt1MeYOpHozqXdLW08ouo_btdZq-1czccE1CRETS7cbJn61wqd-seRaCs15t18KDqOL0vUYZeIB6_FI1mZRqVgXKWzEEWuOTJGcrL-WdNV-Wj1VXJ__xcm2s1V8GLESrzpb7U5kPwKK8r0amp7T6znNz1sxbPJkcs9AvlGFakPsAv_BlRB1bg_rLrzjxjVPtyAENEJPUBPVjHxXz-0y-3CM3_0jF7akwICEEBbhoUduTAffvI7PZqkpE5kOEuMdxoT0ni9bCazd9hiE-la3BoI-FivPRBt1W3o6a9V1Q5NGtPVYIjoEHT-vk0rpilHER4-4LLyqKR5HxrdcbX4uqA"
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkljUWhkdERBUG8xdU9DM1dZd0tOaSJ9.eyJpc3MiOiJodHRwczovL21vc2NvZC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjExMmJlZWNjNzI0MDUwMDcxYjg2MzIxIiwiYXVkIjoiY2FzdGluZyIsImlhdCI6MTYyODg3NzMxOCwiZXhwIjoxNjI4ODk1MzE4LCJhenAiOiJOZE93ZjFKaVNLbk51WDFLMzJVenFPcVRaMktuelFWNyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiYWRkOmFjdG9ycyIsImFkZDptb3ZpZXMiLCJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIl19.Ibl_DCHRlnlLLFVS4q2yoOP0J6vzfmUdtr7FSsjCIxnyJAxHYCZCHu487nG4sEaQOqI5qSvwudOqvWoHKTGecRg49ke5J8vgZxVRZ8am7cwPUX1K1yuTiWmoZyIIhcB6JO8IM9iV3jv1t_-panmm4HkkCe7P6B8lfoPhB4dz0aqnIByTjxBZipE26r2XfLjyyQHlVmS0cXwlJIyTwoicq2eq01c1A7hBhe6LA9Vm0NvsAfHlYUIk9e93CFUUNb2VQDRDs7wPCu2uchcIGbFEfbGJLpovTZz3nkQN9MI4ow4Wc5X7VdPMI7lwmcRB9kXQE1eG7FZNwt8THJdkBfKxuw"
 		}
 	]
 }
