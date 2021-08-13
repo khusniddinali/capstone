@@ -4,8 +4,8 @@
 The mission of this API project is to help users manage actors and movies in an orderly manner.
 
 ## Getting Started
-URL where project is deployed: <URL>
-Authentication:
+- URL where project is deployed: https://husniddin-casting.herokuapp.com
+- Authentication:
 > Information of users who has permissions:
 >*  castingassistant@gmail.com
 >*  castingdirector@gmail.com
